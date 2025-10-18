@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const AddHotelForm = () => {
+  const [successMessage, setSuccessMessage] = useState("")
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -32,6 +33,7 @@ const AddHotelForm = () => {
   };
 
   const handleSubmit = async (event) => {
+    setSuccessMessage("")
     event.preventDefault();
     try {
       const response = await fetch("http://localhost:3000/hotels", {
@@ -46,6 +48,7 @@ const AddHotelForm = () => {
       }
       const data = await response.json();
       console.log("Added Hotel", data);
+      setSuccessMessage("Hotel has been added")
     } catch (error) {
       console.log(error);
     }
@@ -54,6 +57,7 @@ const AddHotelForm = () => {
   return (
     <div>
       <h2>Add New Hotel</h2>
+      {successMessage && <p style={{color: "green"}}>{successMessage}</p>}
       <form onSubmit={handleSubmit}>
         <label>Name:</label>
         <br />
