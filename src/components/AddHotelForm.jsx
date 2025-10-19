@@ -36,7 +36,7 @@ const AddHotelForm = () => {
     setSuccessMessage("")
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/hotels", {
+      const response = await fetch("https://topic-bi-1-3-hw-2-backend.vercel.app/hotels", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
